@@ -8,11 +8,13 @@ import useDebounced from "@/hooks/useDebounced";
 import { useGetServicesQuery } from "@/redux/features/service/serviceApi";
 import CardLoading from "@/components/UI/loading/CardLoading";
 import ErrorMessage from "@/components/UI/error/ErrorMessage";
+import Pagination from "@/components/UI/Pagination";
 
 const ServicesPage = () => {
   const query: Record<string, any> = {};
   const [sorting, setSorting] = useState<any>(serviceSorting[0]);
   const [limit, setLimit] = useState<any>(paginationLimits[1]);
+  const [page, setPage] = useState<number>(0);
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(0);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -30,7 +32,7 @@ const ServicesPage = () => {
     delay: 600,
   });
 
-  query["page"] = 1;
+  query["page"] = page;
   query["limit"] = limit.value;
   query["sortOrder"] = sorting.sortOrder;
   query["sortBy"] = sorting.sortBy;
@@ -62,7 +64,7 @@ const ServicesPage = () => {
   } else if (!isLoading && isError) {
     content = <ErrorMessage errorMessage={(error as any).message} />;
   } else if (!isLoading && !isError && data?.services?.length === 0) {
-    content = <ErrorMessage errorMessage="There is no service" />;
+    content = <ErrorMessage errorMessage="There is no service available" />;
   } else {
     content = (
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
@@ -74,7 +76,7 @@ const ServicesPage = () => {
   }
 
   return (
-    <section className="mt-10">
+    <section className="mt-10 mb-10">
       <div className="container">
         <div className="flex flex-col gap-2 md:flex-row md:justify-between">
           <Searchbar
@@ -125,14 +127,18 @@ const ServicesPage = () => {
                 />
               </div>
             </div>
-            {/* <div className="mt-2 w-full px-2 py-2 bg-white rounded-md shadow md:mt-10">
-              <label htmlFor="minPrice" className="font-normal">
-                Rating
-              </label>
-            </div> */}
           </div>
           <div className="col-span-1 lg:col-span-9">{content}</div>
         </div>
+        {data?.meta && data?.services.length > 0 && (
+          <div className="mt-2 flex justify-end lg:mt-10">
+            <Pagination
+              limit={Number(data.meta.limit)}
+              total={Number(data.meta.total)}
+              handlePagination={(value) => setPage(value)}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

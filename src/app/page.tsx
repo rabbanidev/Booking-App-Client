@@ -14,11 +14,11 @@ const HomePage = () => {
             Available <span className="text-red-600">Services</span>
           </h3>
           <div className="mt-5 grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {/* <ServiceCard />
             <ServiceCard />
             <ServiceCard />
             <ServiceCard />
-            <ServiceCard />
-            <ServiceCard />
+            <ServiceCard /> */}
           </div>
         </div>
       </section>

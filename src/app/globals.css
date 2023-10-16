@@ -7,3 +7,29 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+/* .item must be first */
+.item {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  color: black;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
+
+.active {
+  background: black;
+  border: solid 1px black;
+  border-radius: 40px;
+  color: white;
+}
+
+.pagination {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}

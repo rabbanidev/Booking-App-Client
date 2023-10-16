@@ -21,6 +21,10 @@ export const serviceSorting = [
 
 export const paginationLimits = [
   {
+    label: "2/page",
+    value: 2,
+  },
+  {
     label: "5/page",
     value: 5,
   },
