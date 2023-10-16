@@ -1,7 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -34,8 +32,8 @@ const Navbar = () => {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-between">
-                <div className="flex flex-shrink-0 items-center ml-14 sm:ml-0">
-                  <Link href="/" className="text-2xl font-semibold">
+                <div className="flex flex-shrink-0 items-center ml-10 sm:ml-0">
+                  <Link href="/" className="text-xl font-semibold sm:text-2xl">
                     <span className="text-red-600">Booking</span> App
                   </Link>
                 </div>
@@ -47,7 +45,7 @@ const Navbar = () => {
                         href={item.href}
                         className={`py-2 text-sm font-medium text-gray-900 ${
                           item.current
-                            ? "border-b-2 border-gray-900 font-semibold"
+                            ? "border-b-2 border-red-500 font-semibold text-red-500"
                             : ""
                         }`}
                       >
@@ -64,7 +62,7 @@ const Navbar = () => {
                     Login
                   </Link>
                   <Link href="/register">
-                    <button className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2 text-center">
+                    <button className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center sm:px-5">
                       Register
                     </button>
                   </Link>
