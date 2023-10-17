@@ -1,5 +1,11 @@
 import ServiceCard from "@/components/UI/card/ServiceCard";
 import Header from "@/components/home/Header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Booking App | Home",
+  description: "",
+};
 
 const HomePage = () => {
   return (

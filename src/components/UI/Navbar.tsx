@@ -19,7 +19,7 @@ const Navbar = () => {
         <>
           <div className="container">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-1.5 text-white bg-gray-700">
                   <span className="absolute -inset-0.5" />
@@ -31,13 +31,13 @@ const Navbar = () => {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-between">
-                <div className="flex flex-shrink-0 items-center ml-10 sm:ml-0">
-                  <Link href="/" className="text-xl font-semibold sm:text-2xl">
+              <div className="flex flex-1 items-center justify-between md:items-stretch md:justify-between">
+                <div className="flex flex-shrink-0 items-center ml-10 md:ml-0">
+                  <Link href="/" className="text-xl font-semibold md:text-2xl">
                     <span className="text-red-600">Booking</span> App
                   </Link>
                 </div>
-                <div className="hidden sm:ml-16 sm:block">
+                <div className="hidden md:ml-16 md:block">
                   <div className="flex space-x-4">
                     {navigationData.map((item) => (
                       <Link
@@ -62,7 +62,7 @@ const Navbar = () => {
                     Login
                   </Link>
                   <Link href="/register">
-                    <button className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center sm:px-5">
+                    <button className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center md:px-5">
                       Register
                     </button>
                   </Link>
@@ -74,7 +74,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Link

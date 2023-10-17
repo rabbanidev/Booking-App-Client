@@ -12,12 +12,13 @@ const serviceAPi = baseAPi.injectEndpoints({
         method: "GET",
         params: arg,
       }),
-      transformResponse: (response: IService[], meta: IMeta) => {
+      transformResponse: (response: { data: IService[] }, meta: IMeta) => {
         return {
-          services: response,
+          services: response?.data as IService[],
           meta,
         };
       },
+      providesTags: [tagTypes.service],
     }),
   }),
 });

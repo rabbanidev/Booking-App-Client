@@ -1,8 +1,8 @@
 import Navbar from "@/components/UI/Navbar";
-import "./globals.css";
-import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Providers from "@/lib/Providers";
+
+import "./globals.css";
 
 const roboto = Roboto({
   weight: ["400", "700"],
@@ -10,11 +10,6 @@ const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
 });
-
-export const metadata: Metadata = {
-  title: "Booking App | Home",
-  description: "",
-};
 
 export default function RootLayout({
   children,

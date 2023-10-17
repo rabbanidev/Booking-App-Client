@@ -76,7 +76,7 @@ const ServicesPage = () => {
   }
 
   return (
-    <section className="mt-10 mb-10">
+    <section className="mt-10">
       <div className="container">
         <div className="flex flex-col gap-2 md:flex-row md:justify-between">
           <Searchbar
