@@ -67,7 +67,7 @@ const Navbar = () => {
                 {isUserLoggedIn && (
                   <div className="flex gap-x-5">
                     <Link
-                      href="/cart"
+                      href="/carts"
                       className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm p-2 text-center"
                     >
                       <ShoppingCartIcon className="w-5 h-5" />

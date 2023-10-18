@@ -23,7 +23,7 @@ const ServiceCard = ({ service }: IProps) => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Service added successfully!");
-      router.push("/cart");
+      router.push("/carts");
     }
     if (isError) {
       toast.error((error as any).message) || "Seomenthing went wrong!";

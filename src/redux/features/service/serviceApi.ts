@@ -20,7 +20,19 @@ const serviceAPi = baseAPi.injectEndpoints({
       },
       providesTags: [tagTypes.service],
     }),
+    getService: builder.query({
+      query: (id) => ({
+        url: `${SERVICE_URL}/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response: IService) => {
+        return {
+          service: response,
+        };
+      },
+      providesTags: [tagTypes.service],
+    }),
   }),
 });
 
-export const { useGetServicesQuery } = serviceAPi;
+export const { useGetServicesQuery, useGetServiceQuery } = serviceAPi;

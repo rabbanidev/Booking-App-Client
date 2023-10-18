@@ -4,27 +4,38 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Controller, useFormContext } from "react-hook-form";
+import { getErrorMessageByPropertyName } from "@/utils/schemaValidator";
+import ErrorMessage from "../UI/error/ErrorMessage";
 
 type SelectOptions = {
-  label: string;
-  value: string;
+  label: string | number;
+  value: string | number;
 };
 
 type IProps = {
   options: SelectOptions[];
   name: string;
-  value?: string | string[] | undefined;
+  value?: any;
   placeholder?: string;
   label?: string;
   defaultValue?: SelectOptions;
 };
 
 const FormSelect = ({ name, options, placeholder, label }: IProps) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+
+  const errorMessage = getErrorMessageByPropertyName(errors, `${name}.value`);
 
   return (
-    <>
-      {label ? label : null}
+    <div className="w-full">
+      {label ? (
+        <label className="block mb-1 text-sm font-medium text-gray-700">
+          {label}
+        </label>
+      ) : null}
       <Controller
         control={control}
         name={name}
@@ -32,7 +43,11 @@ const FormSelect = ({ name, options, placeholder, label }: IProps) => {
           return (
             <Listbox value={selctedOption} onChange={onChange}>
               <div className="relative mt-1">
-                <Listbox.Button className="relative min-w-[250px] w-full cursor-pointer rounded-lg bg-white py-3 px-3 text-left border shadow">
+                <Listbox.Button
+                  className={`relative min-w-[250px] w-full cursor-pointer rounded-lg border-gray-300 px-3 text-left border shadow ${
+                    selctedOption?.label || placeholder ? "py-3" : "py-5"
+                  }`}
+                >
                   <span className="block truncate">
                     {selctedOption ? selctedOption.label : placeholder}
                   </span>
@@ -78,7 +93,8 @@ const FormSelect = ({ name, options, placeholder, label }: IProps) => {
           );
         }}
       />
-    </>
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+    </div>
   );
 };
 

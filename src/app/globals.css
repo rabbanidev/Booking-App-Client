@@ -8,7 +8,12 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-/* .item must be first */
+/* Date Picker Custom css */
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+/* pagination custom css */
 .item {
   align-items: center;
   cursor: pointer;

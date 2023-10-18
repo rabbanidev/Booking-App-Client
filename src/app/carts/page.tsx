@@ -10,6 +10,7 @@ import {
   useDeleteFromCartMutation,
   useGetCartItemsQuery,
 } from "@/redux/features/cart/cartApi";
+import Link from "next/link";
 
 const CartPage = () => {
   const [deleteFromCart] = useDeleteFromCartMutation();
@@ -45,7 +46,7 @@ const CartPage = () => {
   } else {
     content = data?.cartItems?.map((cartItem) => {
       const { id: cartItemId, service } = cartItem;
-      const { category, name, price } = service;
+      const { category, name, price, id: serviceId } = service;
       return (
         <li
           key={cartItemId}
@@ -74,9 +75,12 @@ const CartPage = () => {
             </div>
           </div>
 
-          <button className="mt-2 text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-300 font-medium rounded text-sm px-5 py-2 text-center sm:mt-0">
+          <Link
+            href={`/bookings/${serviceId}`}
+            className="mt-2 text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-300 font-medium rounded text-sm px-5 py-2 text-center sm:mt-0"
+          >
             Book
-          </button>
+          </Link>
         </li>
       );
     });
