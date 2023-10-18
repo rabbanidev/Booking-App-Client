@@ -42,7 +42,7 @@ const ServiceCard = ({ service }: IProps) => {
 
             <button
               type="button"
-              className="flex items-center rounded-md bg-slate-900 p-1.5 text-center text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-red-700"
+              className="flex items-center rounded-md bg-slate-900 p-1.5 text-center text-sm font-medium text-white hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-700"
             >
               <ShoppingBagIcon className="w-5 h-5" />
             </button>

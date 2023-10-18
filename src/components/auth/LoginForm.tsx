@@ -9,13 +9,15 @@ import Link from "next/link";
 import { SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import ErrorMessage from "../UI/error/ErrorMessage";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
-  id: string;
+  email: string;
   password: string;
 };
 
 const LoginForm = () => {
+  const router = useRouter();
   const [login, { isLoading, isError, error, isSuccess }] = useLoginMutation();
 
   const submitHandler: SubmitHandler<FormValues> = (data: any) => {

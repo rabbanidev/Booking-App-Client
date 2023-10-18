@@ -12,6 +12,7 @@ export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
 
 export const getUserInfo = (): unknown | null => {
   const authToken = getFromLocalStorage(authKey);
+
   if (authToken) {
     const authInfo = decodedToken(authToken);
     return authInfo;
@@ -20,7 +21,7 @@ export const getUserInfo = (): unknown | null => {
   }
 };
 
-export const isLoggedIn = (): boolean => {
+export const authLoggedIn = (): boolean => {
   const authToken = getFromLocalStorage(authKey);
   return !!authToken;
 };

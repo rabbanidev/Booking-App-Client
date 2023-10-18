@@ -54,18 +54,21 @@ const Navbar = () => {
                     ))}
                   </div>
                 </div>
+
                 <div className="flex gap-x-5">
-                  <Link
-                    href="/login"
-                    className="py-2 text-sm font-medium text-gray-900"
-                  >
-                    Login
-                  </Link>
-                  <Link href="/register">
-                    <button className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center md:px-5">
-                      Register
-                    </button>
-                  </Link>
+                  <>
+                    <Link
+                      href="/login"
+                      className="py-2 text-sm font-medium text-gray-900"
+                    >
+                      Login
+                    </Link>
+                    <Link href="/register">
+                      <button className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center md:px-5">
+                        Register
+                      </button>
+                    </Link>
+                  </>
                 </div>
               </div>
               {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
