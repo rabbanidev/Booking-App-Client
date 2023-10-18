@@ -7,25 +7,28 @@ import { IService } from "@/types";
 import { MapPinIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
 import { useAppSelector } from "@/redux/app/hooks";
+import { useRouter } from "next/navigation";
 
 type IProps = {
   service: IService;
 };
 
 const ServiceCard = ({ service }: IProps) => {
-  const { id: serviceId, name, price, location } = service;
+  const router = useRouter();
   const { accessToken } = useAppSelector((state) => state.auth);
   const [addToCart, { isError, isSuccess, error }] = useAddToCartMutation();
+  const { id: serviceId, name, price, location } = service;
   const isUserLoggedIn = accessToken && authLoggedIn(accessToken);
 
   useEffect(() => {
     if (isSuccess) {
       toast.success("Service added successfully!");
+      router.push("/cart");
     }
     if (isError) {
       toast.error((error as any).message) || "Seomenthing went wrong!";
     }
-  }, [error, isError, isSuccess]);
+  }, [error, isError, isSuccess, router]);
 
   const addToCartHandler = () => {
     if (!isUserLoggedIn) {
@@ -61,7 +64,7 @@ const ServiceCard = ({ service }: IProps) => {
           </div>
           <div className="flex items-center justify-between">
             <p className="text-xl font-bold text-slate-900">
-              ${price}
+              BDT {price}
               <span className="text-gray-700 text-xs font-normal">/person</span>
             </p>
 

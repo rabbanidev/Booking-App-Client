@@ -11,6 +11,7 @@ import { navigation } from "@/constants/navigation";
 import { usePathname } from "next/navigation";
 import { authLoggedIn } from "@/services/auth.service";
 import { useAppSelector } from "@/redux/app/hooks";
+import DropDown from "./DropDown";
 
 const Navbar = () => {
   const pathName = usePathname();
@@ -71,6 +72,7 @@ const Navbar = () => {
                     >
                       <ShoppingCartIcon className="w-5 h-5" />
                     </Link>
+                    <DropDown />
                   </div>
                 )}
 
