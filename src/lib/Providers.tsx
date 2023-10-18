@@ -4,13 +4,14 @@ import { Provider } from "react-redux";
 import store from "@/redux/app/store";
 import { loggedIn } from "@/redux/features/auth/authSlice";
 import { useEffect, useState } from "react";
-import { getUserInfo } from "@/services/auth.service";
+import { getFromLocalStorage } from "@/utils/localStorage";
+import { authKey } from "@/constants/storageKey";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
-    const localData = getUserInfo();
-    if (localData) {
-      store.dispatch(loggedIn(localData));
+    const accessToken = getFromLocalStorage(authKey);
+    if (accessToken) {
+      store.dispatch(loggedIn(accessToken));
     }
   }, []);
 

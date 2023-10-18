@@ -10,19 +10,20 @@ export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
   setToLocalStorage(authKey, accessToken as string);
 };
 
-export const getUserInfo = (): unknown | null => {
-  const authToken = getFromLocalStorage(authKey);
-
-  if (authToken) {
-    const authInfo = decodedToken(authToken);
-    return authInfo;
-  } else {
-    return null;
-  }
+export const getUserInfo = (accessToken: string): unknown => {
+  const authInfo = decodedToken(accessToken);
+  return authInfo;
 };
 
-export const authLoggedIn = (): boolean => {
-  const authToken = getFromLocalStorage(authKey);
+export const authLoggedIn = (accessToken: string): boolean => {
+  let authToken;
+
+  if (accessToken) {
+    authToken = accessToken;
+  } else {
+    authToken = getFromLocalStorage(authKey);
+  }
+
   return !!authToken;
 };
 

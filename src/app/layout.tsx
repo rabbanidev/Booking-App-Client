@@ -1,5 +1,6 @@
 import Navbar from "@/components/UI/Navbar";
 import { Roboto } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import Providers from "@/lib/Providers";
 
 import "./globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({
     <Providers>
       <html lang="en">
         <body className={roboto.className}>
+          <Toaster position="top-center" reverseOrder={false} />
           <Navbar />
           <main>{children}</main>
         </body>

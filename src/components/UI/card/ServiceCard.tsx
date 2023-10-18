@@ -1,13 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
+
+import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { authLoggedIn } from "@/services/auth.service";
 import { IService } from "@/types";
 import { MapPinIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
+import { useAppSelector } from "@/redux/app/hooks";
 
 type IProps = {
   service: IService;
 };
 
 const ServiceCard = ({ service }: IProps) => {
-  const { name, price, location } = service;
+  const { id: serviceId, name, price, location } = service;
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const [addToCart, { isError, isSuccess, error }] = useAddToCartMutation();
+  const isUserLoggedIn = accessToken && authLoggedIn(accessToken);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Service added successfully!");
+    }
+    if (isError) {
+      toast.error((error as any).message) || "Seomenthing went wrong!";
+    }
+  }, [error, isError, isSuccess]);
+
+  const addToCartHandler = () => {
+    if (!isUserLoggedIn) {
+      toast.error("You are not logged in!");
+    }
+    addToCart({ serviceId });
+  };
 
   return (
     <div className="col-span-1">
@@ -43,6 +68,7 @@ const ServiceCard = ({ service }: IProps) => {
             <button
               type="button"
               className="flex items-center rounded-md bg-slate-900 p-1.5 text-center text-sm font-medium text-white hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-700"
+              onClick={addToCartHandler}
             >
               <ShoppingBagIcon className="w-5 h-5" />
             </button>

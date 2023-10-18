@@ -1,13 +1,21 @@
 "use client";
 
 import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  ShoppingCartIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { navigation } from "@/constants/navigation";
 import { usePathname } from "next/navigation";
+import { authLoggedIn } from "@/services/auth.service";
+import { useAppSelector } from "@/redux/app/hooks";
 
 const Navbar = () => {
   const pathName = usePathname();
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const isUserLoggedIn = accessToken && authLoggedIn(accessToken);
 
   const navigationData = navigation.map((nav) =>
     nav.href === pathName ? { ...nav, current: true } : nav
@@ -55,21 +63,33 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-x-5">
-                  <>
+                {isUserLoggedIn && (
+                  <div className="flex gap-x-5">
+                    <Link
+                      href="/cart"
+                      className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm p-2 text-center"
+                    >
+                      <ShoppingCartIcon className="w-5 h-5" />
+                    </Link>
+                  </div>
+                )}
+
+                {!isUserLoggedIn && (
+                  <div className="flex gap-x-5">
                     <Link
                       href="/login"
                       className="py-2 text-sm font-medium text-gray-900"
                     >
                       Login
                     </Link>
-                    <Link href="/register">
-                      <button className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center md:px-5">
-                        Register
-                      </button>
+                    <Link
+                      href="/register"
+                      className="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-2 text-center md:px-5"
+                    >
+                      Register
                     </Link>
-                  </>
-                </div>
+                  </div>
+                )}
               </div>
               {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <DropDown />
