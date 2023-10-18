@@ -47,7 +47,7 @@ const BookingForm = ({ serviceId, totalPersonOptions }: IProps) => {
   }, [isSuccess]);
 
   // Destructures from user
-  const { name, contactNo } = data?.user?.user || {};
+  const { name, contactNo, active: isActiveUser } = data?.user?.user || {};
   const defaultValues = {
     checkIn: new Date(),
     checkOut: new Date(),
@@ -58,15 +58,19 @@ const BookingForm = ({ serviceId, totalPersonOptions }: IProps) => {
   };
 
   const submitHandler: SubmitHandler<FormValues> = (data: any) => {
-    const payload = {
-      ...data,
-      service: serviceId,
-      totalPerson: data.totalPerson.value,
-      checkIn: moment(data.checkIn).format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
-      checkOut: moment(data.checkOut).format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
-    };
+    if (!isActiveUser) {
+      toast.error("Your are not active user!");
+    } else {
+      const payload = {
+        ...data,
+        service: serviceId,
+        totalPerson: data.totalPerson.value,
+        checkIn: moment(data.checkIn).format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
+        checkOut: moment(data.checkOut).format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
+      };
 
-    createBooking(payload);
+      createBooking(payload);
+    }
   };
 
   return (

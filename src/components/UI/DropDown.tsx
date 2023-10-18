@@ -1,8 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
+import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/redux/app/hooks";
+import { getUserInfo, removeUserInfo } from "@/services/auth.service";
+import { loggedOut } from "@/redux/features/auth/authSlice";
 
 const DropDown = () => {
+  const dispatch = useAppDispatch();
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const userInfo = accessToken && getUserInfo(accessToken);
+
+  const logoutHandler = () => {
+    dispatch(loggedOut());
+    removeUserInfo();
+  };
+
   return (
     <Menu as="div" className="relative ml-3">
       <div>
@@ -30,16 +44,21 @@ const DropDown = () => {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Menu.Item>
-            {({ active }) => (
-              <a
-                href="#"
-                className={`block px-4 py-2 text-sm text-gray-700 ${
-                  active ? "bg-gray-100" : ""
-                }`}
-              >
-                Your Profile
-              </a>
-            )}
+            <Link
+              href={`/${(userInfo as any).role}/profile`}
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              Your Profile
+            </Link>
+          </Menu.Item>
+          <Menu.Item>
+            <button
+              type="button"
+              className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              onClick={logoutHandler}
+            >
+              Log Out
+            </button>
           </Menu.Item>
         </Menu.Items>
       </Transition>
