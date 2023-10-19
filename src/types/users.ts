@@ -11,6 +11,7 @@ export type ISuperAdmin = {
   email: string;
   contactNo?: string;
   profileImage?: string;
+  id: string;
 };
 
 export type IAdmin = {
@@ -20,6 +21,7 @@ export type IAdmin = {
   dob?: string;
   gender?: IGender;
   profileImage?: string;
+  id: string;
 };
 
 export type IUser = {
@@ -31,6 +33,7 @@ export type IUser = {
   gender?: IGender;
   profileImage?: string;
   active?: boolean;
+  id: string;
 };
 
 export type IUsers = {

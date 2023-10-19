@@ -4,6 +4,7 @@ import {
   ListBulletIcon,
   ShoppingBagIcon,
   UserIcon,
+  UsersIcon,
 } from "@heroicons/react/24/outline";
 import { ENUMS_USER_ROLE } from "./role";
 
@@ -37,6 +38,11 @@ export const sidebarItems = (role: string) => {
 
   const adminSidebarItems: ISidebarItem[] = [
     ...commoneSidebarItems,
+    {
+      text: "Users",
+      link: `/${role}/users`,
+      icon: UsersIcon,
+    },
     {
       text: "Service",
       link: `/${role}/services`,
