@@ -16,7 +16,6 @@ import {
   useGetServicesQuery,
 } from "@/redux/features/service/serviceApi";
 import { getUserInfo } from "@/services/auth.service";
-import Link from "next/link";
 import { useState } from "react";
 
 const ServicePage = () => {

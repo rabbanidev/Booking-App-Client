@@ -23,6 +23,7 @@ export type IAdmin = {
 };
 
 export type IUser = {
+  user: any;
   name: IName;
   email: string;
   contactNo: string;
