@@ -2,14 +2,14 @@
 
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorMessage from "./error/ErrorMessage";
 import { getErrorMessageByPropertyName } from "@/utils/schemaValidator";
 import { useFormContext, Controller } from "react-hook-form";
 
 interface IProps {
   name: string;
-  value?: string | string[] | number | undefined;
+  value?: string;
   label?: string;
 }
 
@@ -21,6 +21,12 @@ const FileUpload = ({ name, value, label }: IProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [image, setImage] = useState<string>("");
+
+  useEffect(() => {
+    if (value) {
+      setImage(value);
+    }
+  }, [value]);
 
   const errorMessage = getErrorMessageByPropertyName(errors, name);
 
@@ -59,7 +65,7 @@ const FileUpload = ({ name, value, label }: IProps) => {
       render={({ field }) => (
         <div className="w-full">
           <label className="flex flex-col items-center justify-center w-32 h-auto border-2 rounded-lg">
-            {(image || field.value) && (
+            {image && (
               <div className="mb-5 bg-white">
                 <Image
                   src={image}

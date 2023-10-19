@@ -31,15 +31,8 @@ const ProfilePage = () => {
   const [updateMyProfile, { isLoading, isError, error }] =
     useUpdateMyProfileMutation();
 
-  const {
-    name,
-    email,
-    contactNo,
-    dob,
-    gender,
-    profileImage,
-    active: isActiveUser,
-  } = data?.user?.user || {};
+  const { name, email, contactNo, dob, gender, profileImage } =
+    data?.user?.admin || {};
 
   const defaultValues = {
     name: name || "",
@@ -54,10 +47,6 @@ const ProfilePage = () => {
   };
 
   const submitHandler: SubmitHandler<FormValues> = (data: any) => {
-    if (!isActiveUser) {
-      toast.error("Your are not active user!");
-    }
-
     const payload = {
       ...data,
       gender: data.gender.value,
@@ -68,7 +57,6 @@ const ProfilePage = () => {
 
   return (
     <Form submitHandler={submitHandler} defaultValues={defaultValues}>
-      {!isActiveUser && <ErrorMessage errorMessage="Enable User" />}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
         <FormInput
           name="name.firstName"
