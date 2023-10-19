@@ -44,7 +44,7 @@ const FormSelect = ({ name, options, placeholder, label }: IProps) => {
             <Listbox value={selctedOption} onChange={onChange}>
               <div className="relative mt-1">
                 <Listbox.Button
-                  className={`relative min-w-[250px] w-full cursor-pointer rounded-lg border-gray-300 px-3 text-left border shadow ${
+                  className={`relative w-full cursor-pointer bg-white rounded-lg border-gray-300 px-3 text-left border shadow ${
                     selctedOption?.label || placeholder ? "py-3" : "py-5"
                   }`}
                 >

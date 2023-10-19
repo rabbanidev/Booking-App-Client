@@ -9,12 +9,16 @@ import {
 import Link from "next/link";
 import { navigation } from "@/constants/navigation";
 import { usePathname } from "next/navigation";
-import { authLoggedIn } from "@/services/auth.service";
+import { authLoggedIn, getUserInfo } from "@/services/auth.service";
 import { useAppSelector } from "@/redux/app/hooks";
 import DropDown from "./DropDown";
+import useGetLocalStorage from "@/hooks/useGetLocalStorage";
+import { authKey } from "@/constants/storageKey";
+import { loggedIn } from "@/redux/features/auth/authSlice";
 
 const Navbar = () => {
   const pathName = usePathname();
+  const { loading } = useGetLocalStorage(authKey, loggedIn);
   const { accessToken } = useAppSelector((state) => state.auth);
   const isUserLoggedIn = accessToken && authLoggedIn(accessToken);
 
@@ -93,9 +97,6 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <DropDown />
-              </div> */}
             </div>
           </div>
 

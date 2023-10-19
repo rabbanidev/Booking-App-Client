@@ -13,9 +13,7 @@ const ErrorMessage = ({ errorMessage, errorMessages }: IProps) => {
 
   return (
     <>
-      <small className="text-red-500 text-xs mt-0.5 lg:text-sm">
-        {errorMessage}
-      </small>
+      <p className="text-red-500 text-xs mt-0.5 lg:text-sm">{errorMessage}</p>
       {errorMessages?.length && (
         <ul>
           {errorMessages.map((err) => (

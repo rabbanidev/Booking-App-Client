@@ -8,12 +8,12 @@ import { getFromLocalStorage } from "@/utils/localStorage";
 import { authKey } from "@/constants/storageKey";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-  useEffect(() => {
-    const accessToken = getFromLocalStorage(authKey);
-    if (accessToken) {
-      store.dispatch(loggedIn(accessToken));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const accessToken = getFromLocalStorage(authKey);
+  //   if (accessToken) {
+  //     store.dispatch(loggedIn(accessToken));
+  //   }
+  // }, []);
 
   return <Provider store={store}>{children}</Provider>;
 };

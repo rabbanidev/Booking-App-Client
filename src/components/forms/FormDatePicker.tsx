@@ -19,7 +19,7 @@ interface IDatePickerProps {
 const FormDatePicker = ({
   id,
   name,
-  value = new Date(),
+  value,
   label,
   placeholder,
   disabled,

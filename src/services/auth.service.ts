@@ -10,12 +10,16 @@ export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
   setToLocalStorage(authKey, accessToken as string);
 };
 
-export const getUserInfo = (accessToken: string): unknown => {
-  const authInfo = decodedToken(accessToken);
-  return authInfo;
+export const getUserInfo = (accessToken: string) => {
+  const authInfo = decodedToken(accessToken) as any;
+
+  return {
+    role: authInfo.role,
+    userId: authInfo.userId,
+  };
 };
 
-export const authLoggedIn = (accessToken: string): boolean => {
+export const authLoggedIn = (accessToken?: string): boolean => {
   let authToken;
 
   if (accessToken) {
