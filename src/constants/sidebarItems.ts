@@ -1,6 +1,8 @@
 import {
   BellAlertIcon,
   ClipboardDocumentCheckIcon,
+  ListBulletIcon,
+  ShoppingBagIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { ENUMS_USER_ROLE } from "./role";
@@ -33,8 +35,24 @@ export const sidebarItems = (role: string) => {
     },
   ];
 
+  const adminSidebarItems: ISidebarItem[] = [
+    ...commoneSidebarItems,
+    {
+      text: "Service",
+      link: `/${role}/services`,
+      icon: ListBulletIcon,
+    },
+    {
+      text: "Booking",
+      link: `/${role}/bookings`,
+      icon: ShoppingBagIcon,
+    },
+  ];
+
   if (role === ENUMS_USER_ROLE.USER) {
     return userSidebarItems;
+  } else if (role === ENUMS_USER_ROLE.ADMIN) {
+    return adminSidebarItems;
   } else {
     return commoneSidebarItems;
   }

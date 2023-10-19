@@ -10,6 +10,10 @@ import { SubmitHandler } from "react-hook-form";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import ErrorMessage from "../UI/error/ErrorMessage";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAppSelector } from "@/redux/app/hooks";
+import { getUserInfo } from "@/services/auth.service";
+import { ENUMS_USER_ROLE } from "@/constants/role";
 
 type FormValues = {
   email: string;
@@ -18,7 +22,20 @@ type FormValues = {
 
 const LoginForm = () => {
   const router = useRouter();
+  const { accessToken } = useAppSelector((state) => state.auth);
   const [login, { isLoading, isError, error, isSuccess }] = useLoginMutation();
+
+  const userInfo: any = accessToken && getUserInfo(accessToken as string);
+
+  useEffect(() => {
+    if (userInfo?.role === ENUMS_USER_ROLE.ADMIN) {
+      router.push(`/${userInfo.role}/profile`);
+    } else if (userInfo?.role === ENUMS_USER_ROLE.SUPER_ADMIN) {
+      router.push(`/${userInfo.role}/profile`);
+    } else if (userInfo?.role === ENUMS_USER_ROLE.USER) {
+      router.push(`/${userInfo.role}/profile`);
+    }
+  }, [router, userInfo?.role]);
 
   const submitHandler: SubmitHandler<FormValues> = (data: any) => {
     login(data);

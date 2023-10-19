@@ -32,7 +32,36 @@ const serviceAPi = baseAPi.injectEndpoints({
       },
       providesTags: [tagTypes.service],
     }),
+    createService: builder.mutation({
+      query: (data) => ({
+        url: `${SERVICE_URL}`,
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: [tagTypes.service],
+    }),
+    updateService: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `${SERVICE_URL}/${id}`,
+        method: "PATCH",
+        data,
+      }),
+      invalidatesTags: [tagTypes.service],
+    }),
+    deleteService: builder.mutation({
+      query: (id) => ({
+        url: `${SERVICE_URL}/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.service],
+    }),
   }),
 });
 
-export const { useGetServicesQuery, useGetServiceQuery } = serviceAPi;
+export const {
+  useGetServicesQuery,
+  useGetServiceQuery,
+  useCreateServiceMutation,
+  useUpdateServiceMutation,
+  useDeleteServiceMutation,
+} = serviceAPi;

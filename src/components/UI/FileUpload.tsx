@@ -59,19 +59,18 @@ const FileUpload = ({ name, value, label }: IProps) => {
       render={({ field }) => (
         <div className="w-full">
           <label className="flex flex-col items-center justify-center w-32 h-auto border-2 rounded-lg">
-            {image ||
-              (field.value && (
-                <div className="mb-5 bg-white">
-                  <Image
-                    src={image ? image : field.value}
-                    width={120}
-                    height={130}
-                    alt="avater"
-                    priority
-                    className="w-full h-28 rounded-lg"
-                  />
-                </div>
-              ))}
+            {(image || field.value) && (
+              <div className="mb-5 bg-white">
+                <Image
+                  src={image}
+                  width={120}
+                  height={130}
+                  alt="avater"
+                  priority
+                  className="w-full h-28 rounded-lg"
+                />
+              </div>
+            )}
 
             {loading ? (
               <div className="flex flex-col items-center justify-center pt-5 pb-6 bg-white w-full rounded-lg">
