@@ -22,8 +22,8 @@ export const sidebarItems = (role: string) => {
   const userSidebarItems: ISidebarItem[] = [
     ...commoneSidebarItems,
     {
-      text: "History",
-      link: `/${role}/history`,
+      text: "Booking History",
+      link: `/${role}/booking/history`,
       icon: ClipboardDocumentCheckIcon,
     },
     {

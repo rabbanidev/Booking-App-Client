@@ -1,4 +1,5 @@
-import { MapPinIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { MapPinIcon, StarIcon, UsersIcon } from "@heroicons/react/24/outline";
+import Star from "./Star";
 
 type IProps = {
   category: string;
@@ -10,7 +11,7 @@ type IProps = {
   description?: string;
 };
 
-const ProductDeacription = ({
+const ProductDescription = ({
   category,
   name,
   location,
@@ -21,11 +22,8 @@ const ProductDeacription = ({
 }: IProps) => {
   return (
     <div className="mt-5 p-5 rounded-xl w-full shadow relative">
-      {rating && (
-        <span className="absolute top-6 right-5 rounded bg-red-500 text-white px-2.5 py-0.5 text-xs font-semibold">
-          5.0
-        </span>
-      )}
+      {rating && <Star rating={rating} />}
+
       <h5 className="text-lg font-medium tracking-tight text-gray-700 truncate">
         {name}
       </h5>
@@ -57,4 +55,4 @@ const ProductDeacription = ({
   );
 };
 
-export default ProductDeacription;
+export default ProductDescription;

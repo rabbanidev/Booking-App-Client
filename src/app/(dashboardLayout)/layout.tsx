@@ -16,9 +16,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  // const { loading } = useGetLocalStorage(authKey, loggedIn);
-  // const { accessToken } = useAppSelector((state) => state.auth);
-  const isUserLoggedIn = authLoggedIn();
+  const { loading } = useGetLocalStorage(authKey, loggedIn);
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const isUserLoggedIn = authLoggedIn(accessToken as unknown as string);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {

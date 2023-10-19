@@ -64,7 +64,7 @@ const FormSelect = ({ name, options, placeholder, label }: IProps) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg sm:text-sm">
+                  <Listbox.Options className="absolute mt-1 max-h-60 z-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg sm:text-sm">
                     {options.map((option: any) => (
                       <Listbox.Option
                         key={option.label}

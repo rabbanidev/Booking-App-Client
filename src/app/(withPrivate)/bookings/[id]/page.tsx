@@ -6,6 +6,8 @@ import withAuth from "@/components/auth/WithAuth";
 import BookingForm from "@/components/booking/BookingForm";
 import ProductDeacription from "@/components/shared/ProductDeacription";
 import ProductDetailsImage from "@/components/shared/ProductDetailsImage";
+import ReviewList from "@/components/shared/ReviewList";
+import Star from "@/components/shared/Star";
 import { useGetServiceQuery } from "@/redux/features/service/serviceApi";
 import { generateTotalPersonOptions } from "@/utils/optionGenerate";
 
@@ -61,6 +63,7 @@ const BookPage = ({ params }: IDefaultProps) => {
             price={price}
             description={description}
           />
+          <ReviewList />
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="p-5 rounded-xl w-full shadow relative">
@@ -68,11 +71,7 @@ const BookPage = ({ params }: IDefaultProps) => {
               BDT {price}
               <span className="text-xs font-normal">/person</span>
             </p>
-            {rating && (
-              <span className="absolute top-6 right-5 rounded bg-red-500 text-white px-2.5 py-0.5 text-xs font-semibold">
-                {rating}
-              </span>
-            )}
+            {rating && <Star rating={rating} />}
           </div>
           <BookingForm
             serviceId={params.id}

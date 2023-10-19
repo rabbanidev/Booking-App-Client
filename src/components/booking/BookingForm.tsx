@@ -13,6 +13,7 @@ import { useCreateBookingMutation } from "@/redux/features/booking/bookingApi";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import ErrorMessage from "../UI/error/ErrorMessage";
+import { useRouter } from "next/navigation";
 
 type IProps = {
   serviceId: string;
@@ -34,17 +35,17 @@ type FormValues = {
 };
 
 const BookingForm = ({ serviceId, totalPersonOptions }: IProps) => {
+  const router = useRouter();
   const { data } = useGetMyInfoQuery(undefined);
-  const [
-    createBooking,
-    { isLoading, isError, error, isSuccess, data: bookingData },
-  ] = useCreateBookingMutation();
+  const [createBooking, { isLoading, isError, error, isSuccess }] =
+    useCreateBookingMutation();
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Booking successfully added!");
+      toast.success("Booking successfull!");
+      router.push(`/reviews/${serviceId}`);
     }
-  }, [isSuccess]);
+  }, [isSuccess, router, serviceId]);
 
   // Destructures from user
   const { name, contactNo, active: isActiveUser } = data?.user?.user || {};

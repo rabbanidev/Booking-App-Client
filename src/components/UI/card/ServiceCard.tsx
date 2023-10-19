@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { authLoggedIn } from "@/services/auth.service";
 import { IService } from "@/types";
-import { MapPinIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import {
+  MapPinIcon,
+  ShoppingBagIcon,
+  StarIcon,
+} from "@heroicons/react/24/outline";
 import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
 import { useAppSelector } from "@/redux/app/hooks";
 import { useRouter } from "next/navigation";
@@ -17,7 +21,7 @@ const ServiceCard = ({ service }: IProps) => {
   const router = useRouter();
   const { accessToken } = useAppSelector((state) => state.auth);
   const [addToCart, { isError, isSuccess, error }] = useAddToCartMutation();
-  const { id: serviceId, name, price, location } = service;
+  const { id: serviceId, name, price, location, rating } = service;
   const isUserLoggedIn = accessToken && authLoggedIn(accessToken);
 
   useEffect(() => {
@@ -58,9 +62,12 @@ const ServiceCard = ({ service }: IProps) => {
                 {location}
               </span>
             </div>
-            <span className="mr-2 rounded bg-red-500 text-white px-2.5 py-0.5 text-xs font-semibold">
-              5.0
-            </span>
+            {rating && (
+              <div className="mr-2 rounded text-red-500 px-2.5 py-0.5 text-xs font-semibold flex gap-x-0.5 items-center">
+                {rating.toFixed(1)}
+                <StarIcon className="w-3 h-3" />
+              </div>
+            )}
           </div>
           <div className="flex items-center justify-between">
             <p className="text-xl font-bold text-slate-900">
