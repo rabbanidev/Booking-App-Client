@@ -9,12 +9,11 @@ import FormInput from "@/components/forms/FormInput";
 import FormSelect from "@/components/forms/FormSelect";
 import { genders } from "@/constants/genders";
 import {
-  useGetSingleUserQuery,
-  useUpdateUserByAuthorityMutation,
+  useGetMyInfoQuery,
+  useUpdateMyProfileMutation,
 } from "@/redux/features/users/usersApi";
 import { capitalizeWord } from "@/utils/capitalizeWord";
 import moment from "moment";
-import { useEffect } from "react";
 import { SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -27,43 +26,24 @@ type FormValues = {
   image?: string;
 };
 
-const UserUpdatePage = ({ params }: { params: any }) => {
-  const { data } = useGetSingleUserQuery(params.id);
-  const [updateUserByAuthority, { isLoading, isError, error, isSuccess }] =
-    useUpdateUserByAuthorityMutation();
+const ProfilePage = () => {
+  const { data } = useGetMyInfoQuery(undefined);
+  const [updateMyProfile, { isLoading, isError, error }] =
+    useUpdateMyProfileMutation();
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("User updated successfully!");
-    }
-  }, [isSuccess]);
+  console.log("data", data);
 
-  const { name, email, contactNo, dob, gender, profileImage } =
-    data?.user?.user || {};
+  const { name, email, contactNo, profileImage } = data?.user?.superAdmin || {};
 
   const defaultValues = {
     name: name || "",
     email: email || "",
     contactNo: contactNo || "",
-    dob: dob ? new Date(dob) : "",
-    gender: {
-      label: gender ? capitalizeWord(gender) : "",
-      value: gender || "",
-    },
-    role: {
-      label: data?.user?.role || "",
-      value: data?.user?.role || "",
-    },
     profileImage: profileImage || null,
   };
 
   const submitHandler: SubmitHandler<FormValues> = (data: any) => {
-    const payload = {
-      ...data,
-      gender: data.gender.value,
-      dob: moment(data.dob).format("YYYY-MM-DDTHH:mm:ss.SSSZ"),
-    };
-    updateUserByAuthority({ id: params.id, data: payload });
+    updateMyProfile(data);
   };
 
   return (
@@ -88,19 +68,15 @@ const UserUpdatePage = ({ params }: { params: any }) => {
           placeholder=""
           label="Contact No"
         />
-        <FormDatePicker name="dob" label="DOB" disabled={moment().toDate} />
-        <FormSelect name="gender" label="Gender" options={genders} />
-
         <FileUpload
           name="profileImage"
           value={defaultValues?.profileImage ? defaultValues.profileImage : ""}
         />
       </div>
       <SubmitButton text="Update" loading={isLoading} />
-
       {isError && <ErrorMessage errorMessage={(error as any)?.message} />}
     </Form>
   );
 };
 
-export default UserUpdatePage;
+export default ProfilePage;

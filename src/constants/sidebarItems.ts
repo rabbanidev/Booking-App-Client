@@ -55,11 +55,23 @@ export const sidebarItems = (role: string) => {
     },
   ];
 
+  const superAdminSidebarItems: ISidebarItem[] = [
+    ...commoneSidebarItems,
+    {
+      text: "Users",
+      link: `/${role}/users`,
+      icon: UsersIcon,
+    },
+  ];
+
   if (role === ENUMS_USER_ROLE.USER) {
     return userSidebarItems;
   } else if (role === ENUMS_USER_ROLE.ADMIN) {
     return adminSidebarItems;
-  } else {
-    return commoneSidebarItems;
+  } else if (role === ENUMS_USER_ROLE.SUPER_ADMIN) {
+    return superAdminSidebarItems;
   }
+  // else {
+  //   return commoneSidebarItems;
+  // }
 };

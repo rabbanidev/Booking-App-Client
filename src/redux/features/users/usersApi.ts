@@ -29,7 +29,6 @@ const usersApi = baseAPi.injectEndpoints({
       invalidatesTags: [tagTypes.user],
     }),
 
-    // Akane
     updateUserByAuthority: builder.mutation({
       query: ({ id, data }) => ({
         url: `/${USERS_URL}/update-user-info/${id}`,
@@ -72,6 +71,28 @@ const usersApi = baseAPi.injectEndpoints({
       },
       providesTags: [tagTypes.user],
     }),
+
+    getAllUsers: builder.query({
+      query: () => ({
+        url: `/${USERS_URL}`,
+        method: "GET",
+      }),
+      transformResponse: (response: IUsers[]) => {
+        return {
+          users: response,
+        };
+      },
+      providesTags: [tagTypes.user],
+    }),
+
+    createAdmin: builder.mutation({
+      query: (data) => ({
+        url: `/${USERS_URL}/create-admin`,
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -82,4 +103,6 @@ export const {
   useGetSingleUserQuery,
   useUpdateUserByAuthorityMutation,
   useEnableUserByAuthorityMutation,
+  useGetAllUsersQuery,
+  useCreateAdminMutation,
 } = usersApi;
