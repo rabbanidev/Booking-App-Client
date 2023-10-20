@@ -70,8 +70,7 @@ export const sidebarItems = (role: string) => {
     return adminSidebarItems;
   } else if (role === ENUMS_USER_ROLE.SUPER_ADMIN) {
     return superAdminSidebarItems;
+  } else {
+    return commoneSidebarItems;
   }
-  // else {
-  //   return commoneSidebarItems;
-  // }
 };
