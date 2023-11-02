@@ -38,3 +38,16 @@ body {
   flex-direction: row;
   list-style-type: none;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 28px !important;
+  height: 28px !important;
+  background-color: black;
+  color: white !important;
+  border-radius: 5px;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
