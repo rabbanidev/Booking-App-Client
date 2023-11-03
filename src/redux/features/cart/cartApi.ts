@@ -1,7 +1,7 @@
 import { IMeta } from "@/types";
 import baseAPi from "../baseApi/baseApi";
 import { tagTypes } from "../tagTypes";
-import { ICart } from "@/types/cart";
+import { ICart } from "@/types";
 
 const CART_URL = "/carts";
 

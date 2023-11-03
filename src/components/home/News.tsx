@@ -1,17 +1,16 @@
 "use client";
 
-import { useGetServicesQuery } from "@/redux/features/service/serviceApi";
-import ServiceCard from "../UI/card/ServiceCard";
+import { useGetNewsesQuery } from "@/redux/features/news/newsApi";
 import CardLoading from "../UI/loading/CardLoading";
 import ErrorMessage from "../UI/error/ErrorMessage";
 import Slider from "../UI/Slider";
 import { SwiperSlide } from "swiper/react";
+import NewsCard from "../UI/card/NewsCard";
 
-const UpcomingService = () => {
+const News = () => {
   let query: Record<string, any> = {};
-  query["isUpcoming"] = true;
 
-  const { isLoading, isError, error, data } = useGetServicesQuery(query);
+  const { isLoading, isError, error, data } = useGetNewsesQuery(undefined);
 
   //Decide what to render
   let content = null;
@@ -26,17 +25,15 @@ const UpcomingService = () => {
     );
   } else if (!isLoading && isError) {
     content = <ErrorMessage errorMessage={(error as any).message} />;
-  } else if (!isLoading && !isError && data?.services?.length === 0) {
-    content = (
-      <ErrorMessage errorMessage="There is no upcoming service available" />
-    );
+  } else if (!isLoading && !isError && data?.newses?.length === 0) {
+    content = <ErrorMessage errorMessage="There is no newes" />;
   } else {
     content = (
       <div className="mt-5">
         <Slider>
-          {data?.services.map((service) => (
-            <SwiperSlide key={service.id}>
-              <ServiceCard service={service} />
+          {data?.newses.map((news) => (
+            <SwiperSlide key={news.id}>
+              <NewsCard news={news} />
             </SwiperSlide>
           ))}
         </Slider>
@@ -48,10 +45,10 @@ const UpcomingService = () => {
     <section className="mt-10">
       <div className="container">
         <span className="text-white bg-red-700 hover:bg-red-800 font-normal rounded-full text-sm px-2 py-1 text-center italic">
-          Explore
+          Explore Our
         </span>
         <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
-          Upcoming <span className="text-red-600">Services</span>
+          Latest <span className="text-red-600">News</span>
         </h3>
         {content}
       </div>
@@ -59,4 +56,4 @@ const UpcomingService = () => {
   );
 };
 
-export default UpcomingService;
+export default News;

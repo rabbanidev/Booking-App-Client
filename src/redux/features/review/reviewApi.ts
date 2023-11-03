@@ -1,7 +1,6 @@
-import { IReview } from "@/types/review";
 import baseAPi from "../baseApi/baseApi";
 import { tagTypes } from "../tagTypes";
-import { IMeta } from "@/types";
+import { IMeta, IReview } from "@/types";
 
 const REVIEW_URL = "/reviews";
 

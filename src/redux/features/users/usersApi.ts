@@ -1,7 +1,6 @@
-import { IMeta, IService } from "@/types";
+import { IUsers } from "@/types";
 import baseAPi from "../baseApi/baseApi";
 import { tagTypes } from "../tagTypes";
-import { IUsers } from "@/types/users";
 
 const USERS_URL = "/users";
 

@@ -1,7 +1,6 @@
-import { IMeta } from "@/types";
+import { IBooking, IMeta } from "@/types";
 import baseAPi from "../baseApi/baseApi";
 import { tagTypes } from "../tagTypes";
-import { IBooking } from "@/types/booking";
 
 const BOOKING_URL = "/bookings";
 

@@ -29,7 +29,6 @@ const ReviewCard = ({ review }: IProps) => {
               sizes="100vw"
             />
           )}
-          {}
           <h5 className="mt-3 text-xl font-semibold tracking-tight text-slate-900 truncate capitalize">
             {name}
           </h5>

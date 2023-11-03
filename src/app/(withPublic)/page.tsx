@@ -3,6 +3,8 @@ import Header from "@/components/home/Header";
 import { Metadata } from "next";
 import Overview from "@/components/home/Overview";
 import Rating from "@/components/home/Rating";
+import News from "@/components/home/News";
+import Footer from "@/components/UI/Footer";
 
 export const metadata: Metadata = {
   title: "Booking App | Home",
@@ -15,8 +17,9 @@ const HomePage = () => {
       <Header />
       <UpcomingService />
       <Rating />
-      {/* <Overview /> */}
-      <div className="mb-10"></div>
+      <News />
+      <Overview />
+      {/* <Footer /> */}
     </>
   );
 };
