@@ -5,7 +5,7 @@ import { generateTotalPersonOptions } from "@/utils/optionGenerate";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { reviewSchema } from "@/schemas/review";
-import { useCreateReviewMutation } from "@/redux/features/review/review";
+import { useCreateReviewMutation } from "@/redux/features/review/reviewApi";
 import toast from "react-hot-toast";
 import Form from "@/components/forms/Form";
 import SubmitButton from "@/components/UI/button/SubmitButton";

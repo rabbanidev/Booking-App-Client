@@ -12,6 +12,7 @@ import {
 import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
 import { useAppSelector } from "@/redux/app/hooks";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type IProps = {
   service: IService;
@@ -21,7 +22,7 @@ const ServiceCard = ({ service }: IProps) => {
   const router = useRouter();
   const { accessToken } = useAppSelector((state) => state.auth);
   const [addToCart, { isError, isSuccess, error }] = useAddToCartMutation();
-  const { id: serviceId, name, price, location, rating } = service;
+  const { id: serviceId, name, price, location, rating, image } = service;
   const isUserLoggedIn = accessToken && authLoggedIn(accessToken);
 
   useEffect(() => {
@@ -37,17 +38,23 @@ const ServiceCard = ({ service }: IProps) => {
   const addToCartHandler = () => {
     if (!isUserLoggedIn) {
       toast.error("You are not logged in!");
+    } else {
+      addToCart({ serviceId });
     }
-    addToCart({ serviceId });
   };
 
   return (
     <div className="col-span-1">
       <div className="relative w-full overflow-hidden rounded-lg bg-white shadow-md">
-        <img
+        <Image
           className="w-full h-60 rounded-t-lg object-cover"
-          src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-          alt="product image"
+          src={image}
+          alt={name}
+          width={0}
+          height={300}
+          sizes="100vw"
+          objectFit="cover"
+          style={{ width: "100%" }}
         />
         <div className="mt-4 px-5 pb-5">
           <a href="#">

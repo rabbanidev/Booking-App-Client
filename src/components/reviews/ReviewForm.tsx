@@ -9,7 +9,7 @@ import { SubmitHandler } from "react-hook-form";
 import FormTextArea from "../forms/FormTextArea";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { reviewSchema } from "@/schemas/review";
-import { useCreateReviewMutation } from "@/redux/features/review/review";
+import { useCreateReviewMutation } from "@/redux/features/review/reviewApi";
 import ErrorMessage from "../UI/error/ErrorMessage";
 import toast from "react-hot-toast";
 
