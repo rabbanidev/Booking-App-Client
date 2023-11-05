@@ -6,12 +6,13 @@ import CardLoading from "../UI/loading/CardLoading";
 import ErrorMessage from "../UI/error/ErrorMessage";
 import Slider from "../UI/Slider";
 import { SwiperSlide } from "swiper/react";
+import SectionTitle from "../shared/SectionTitle";
 
 const UpcomingService = () => {
   let query: Record<string, any> = {};
   query["isUpcoming"] = true;
 
-  const { isLoading, isError, error, data } = useGetServicesQuery(query);
+  const { isLoading, isError, error, data } = useGetServicesQuery(undefined);
 
   //Decide what to render
   let content = null;
@@ -47,12 +48,7 @@ const UpcomingService = () => {
   return (
     <section className="mt-10">
       <div className="container">
-        <span className="text-white bg-red-700 hover:bg-red-800 font-normal rounded-full text-sm px-2 py-1 text-center italic">
-          Explore
-        </span>
-        <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
-          Upcoming <span className="text-red-600">Services</span>
-        </h3>
+        <SectionTitle label="Upcoming" value="Services" />
         {content}
       </div>
     </section>

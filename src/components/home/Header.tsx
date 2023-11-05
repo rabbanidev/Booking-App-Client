@@ -12,7 +12,7 @@ const Header = () => {
 
       <div className="px-4 sm:px-6 lg:px-8 z-10">
         <div className="px-5 text-center">
-          <h2 className="text-4xl tracking-tight leading-10 font-semibold sm:text-4xl text-white sm:leading-none md:text-6xl">
+          <h2 className="text-2xl leading-0 font-semibold sm:text-4xl text-white sm:leading-none md:text-6xl">
             Book The Best Hotel,
             <br /> For Your Vacation
           </h2>

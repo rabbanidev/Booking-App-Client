@@ -6,6 +6,7 @@ import ReviewCard from "../UI/card/ReviewCard";
 import { useGetReviewsQuery } from "@/redux/features/review/reviewApi";
 import CardLoading from "../UI/loading/CardLoading";
 import ErrorMessage from "../UI/error/ErrorMessage";
+import SectionTitle from "../shared/SectionTitle";
 
 const Rating = () => {
   const { isLoading, isError, error, data } = useGetReviewsQuery(undefined);
@@ -42,9 +43,7 @@ const Rating = () => {
   return (
     <section className="mt-10">
       <div className="container">
-        <h3 className="text-2xl font-semibold tracking-tight text-slate-900">
-          Client <span className="text-red-600">Reviews</span>
-        </h3>
+        <SectionTitle label="Client" value="Reviews" />
         {content}
       </div>
     </section>
