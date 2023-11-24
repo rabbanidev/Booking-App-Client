@@ -53,7 +53,7 @@ const BookPage = ({ params }: IDefaultProps) => {
     content = (
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-10 xl:gap-20">
         <div className="col-span-1 lg:col-span-8">
-          <ProductDetailsImage />
+          <ProductDetailsImage url={image} title={name} />
           <ProductDeacription
             category={category}
             name={name}

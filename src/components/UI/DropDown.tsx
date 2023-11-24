@@ -35,11 +35,13 @@ const DropDown = () => {
           <span className="sr-only">Open user menu</span>
           {user?.profileImage && (
             <Image
-              className="rounded-full"
+              className="rounded-full object-contain"
               width={32}
-              height={32}
+              height={28}
               src={user?.profileImage}
               alt={userName}
+              objectFit="cover"
+              priority
             />
           )}
         </Menu.Button>

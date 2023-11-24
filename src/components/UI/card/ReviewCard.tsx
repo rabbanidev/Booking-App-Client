@@ -17,12 +17,12 @@ const ReviewCard = ({ review }: IProps) => {
   return (
     <div className="col-span-1">
       <div className="relative min-h-[250px] w-full overflow-hidden rounded-lg bg-white shadow-md text-center">
-        <div className="mt-4 overflow-hidden">
+        <div className="mt-10 overflow-hidden">
           {user?.user?.profileImage && (
             <Image
               src={user.user.profileImage}
               alt={name}
-              className="relative inline-block h-[58px] w-[58px] !rounded-full object-cover object-center"
+              className="relative inline-block h-[58px] w-[58px] !rounded-full object-cover object-center border-2 p-[1px]"
               width={0}
               height={0}
               priority

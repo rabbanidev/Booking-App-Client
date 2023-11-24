@@ -19,7 +19,6 @@ const HomePage = () => {
       <Rating />
       <News />
       {/* <Overview /> */}
-      <Footer />
     </>
   );
 };

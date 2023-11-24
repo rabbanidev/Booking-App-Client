@@ -41,7 +41,12 @@ const Rating = () => {
   }
 
   return (
-    <section className="mt-10">
+    <section
+      className="py-10 bg-scroll bg-[url('/brick-wall.png')]"
+      style={{
+        backdropFilter: "contrast(0.5)",
+      }}
+    >
       <div className="container">
         <SectionTitle label="Client" value="Reviews" />
         {content}

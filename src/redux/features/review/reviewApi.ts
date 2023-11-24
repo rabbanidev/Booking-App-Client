@@ -20,6 +20,19 @@ const reviewApi = baseAPi.injectEndpoints({
       },
       providesTags: [tagTypes.review],
     }),
+    getProductReview: builder.query({
+      query: (id) => ({
+        url: `${REVIEW_URL}/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response: IReview[]) => {
+        return {
+          reviews: response,
+        };
+      },
+      providesTags: [tagTypes.review],
+    }),
+
     createReview: builder.mutation({
       query: (data) => ({
         url: `${REVIEW_URL}`,
@@ -31,4 +44,8 @@ const reviewApi = baseAPi.injectEndpoints({
   }),
 });
 
-export const { useGetReviewsQuery, useCreateReviewMutation } = reviewApi;
+export const {
+  useGetReviewsQuery,
+  useGetProductReviewQuery,
+  useCreateReviewMutation,
+} = reviewApi;

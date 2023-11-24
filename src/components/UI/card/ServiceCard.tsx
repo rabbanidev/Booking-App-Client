@@ -13,6 +13,7 @@ import { useAddToCartMutation } from "@/redux/features/cart/cartApi";
 import { useAppSelector } from "@/redux/app/hooks";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 type IProps = {
   service: IService;
@@ -57,11 +58,11 @@ const ServiceCard = ({ service }: IProps) => {
           style={{ width: "100%" }}
         />
         <div className="mt-4 px-5 pb-5">
-          <a href="#">
+          <Link href={`/services/${serviceId}`}>
             <h5 className="text-xl font-semibold tracking-tight text-slate-900 truncate">
               {name}
             </h5>
-          </a>
+          </Link>
           <div className="mt-2.5 mb-5 flex justify-between items-center">
             <div className="flex items-center gap-x-1">
               <MapPinIcon className="w-4 h-4" />

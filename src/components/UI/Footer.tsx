@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="mt-10 w-full h-auto bg-gray-800 text-white py-5">
+    <footer className="mt-10 w-full h-auto bg-gray-800 text-white py-10 bg-scroll bg-[url('/bg_layer_3.png')] bg-no-repeat bg-center bg-cover">
       <div className="container">
         <div className="sm:flex sm:items-center sm:justify-between">
           <Link href="/" className="text-xl font-semibold md:text-2xl">

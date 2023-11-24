@@ -24,7 +24,7 @@ const ProductDescription = ({
     <div className="mt-5 p-5 rounded-xl w-full shadow relative">
       {rating && <Star rating={rating} />}
 
-      <h5 className="text-lg font-medium tracking-tight text-gray-700 truncate">
+      <h5 className="text-xl font-medium tracking-tight text-gray-900 truncate">
         {name}
       </h5>
       <div className="mt-5 flex gap-x-10">
