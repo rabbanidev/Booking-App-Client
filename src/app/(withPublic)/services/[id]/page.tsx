@@ -53,7 +53,7 @@ const ServicePage = ({ params }: IDefaultProps) => {
     content = (
       <div className="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:gap-y-0 lg:gap-x-10">
         <div className="col-span-1 lg:col-span-6">
-          <ProductDetailsImage url={image} title={name} />
+          <ProductDetailsImage url={image} title={name} height="h-full" />
         </div>
         <div className="col-span-1 lg:col-span-6">
           <ProductDeacription

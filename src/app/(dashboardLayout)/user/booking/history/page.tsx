@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import ErrorMessage from "@/components/UI/error/ErrorMessage";
 import CardLoading from "@/components/UI/loading/CardLoading";
@@ -6,6 +5,7 @@ import {
   useCancelBookingMutation,
   useGetMyBookingsQuery,
 } from "@/redux/features/booking/bookingApi";
+import Image from "next/image";
 
 const BookingHistory = () => {
   const { isLoading, isError, error, data } = useGetMyBookingsQuery(undefined);
@@ -36,18 +36,28 @@ const BookingHistory = () => {
       <div className="mt-5 grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {data?.booking.map((booking) => {
           const { id: bookingId, service, status } = booking;
-          const { name, price } = service;
+          const { name, price, image } = service;
           return (
             <div className="col-span-1" key={bookingId}>
               <div className="relative w-full overflow-hidden rounded-lg bg-white shadow-md">
-                <span className="bg-red-500 text-white px-3 py-1 absolute top-2 right-2 rounded text-xs">
-                  {status}
-                </span>
-                <img
-                  className="w-full h-60 rounded-t-lg object-cover"
-                  src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                  alt="product image"
+                {status === "accepted" ? (
+                  <span className="bg-green-500 text-white px-3 py-1 absolute top-2 right-2 rounded text-xs">
+                    {status}
+                  </span>
+                ) : (
+                  <span className="bg-red-500 text-white px-3 py-1 absolute top-2 right-2 rounded text-xs">
+                    {status}
+                  </span>
+                )}
+
+                <Image
+                  src={image}
+                  alt={name}
+                  width={200}
+                  height={200}
+                  className={`w-full h-full rounded--t-lg`}
                 />
+
                 <div className="mt-4 px-5 pb-5">
                   <h5 className="text-xl font-semibold tracking-tight text-slate-900 truncate">
                     {name}

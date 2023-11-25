@@ -9,7 +9,7 @@ export default function PrivateLayout({
   return (
     <>
       <Navbar />
-      {children}
+      <main className="min-h-[90vh]">{children}</main>
       <Footer />
     </>
   );
