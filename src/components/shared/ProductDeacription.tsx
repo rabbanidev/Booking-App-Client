@@ -1,7 +1,9 @@
 import { MapPinIcon, StarIcon, UsersIcon } from "@heroicons/react/24/outline";
 import Star from "./Star";
+import Link from "next/link";
 
 type IProps = {
+  bookId: string;
   category: string;
   name: string;
   location: string;
@@ -9,9 +11,11 @@ type IProps = {
   rating?: number;
   price: number;
   description?: string;
+  bookBtnShow?: boolean;
 };
 
 const ProductDescription = ({
+  bookId,
   category,
   name,
   location,
@@ -19,9 +23,10 @@ const ProductDescription = ({
   rating,
   price,
   description,
+  bookBtnShow = false,
 }: IProps) => {
   return (
-    <div className="mt-5 p-5 rounded-xl w-full shadow relative">
+    <div className="p-5 rounded-xl w-full shadow relative">
       {rating && <Star rating={rating} />}
 
       <h5 className="text-xl font-medium tracking-tight text-gray-900 truncate">
@@ -49,6 +54,16 @@ const ProductDescription = ({
             Description
           </p>
           <p className="mt-2 text-sm text-gray-600">{description}</p>
+        </div>
+      )}
+      {bookBtnShow && (
+        <div className="mt-5">
+          <Link
+            href={`/bookings/${bookId}`}
+            className="w-full text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          >
+            Book
+          </Link>
         </div>
       )}
     </div>

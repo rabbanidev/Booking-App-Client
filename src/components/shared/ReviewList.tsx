@@ -8,7 +8,7 @@ import Image from "next/image";
 const ReviewList = ({ productId }: { productId: string }) => {
   const { data } = useGetProductReviewQuery(productId);
   return (
-    <div className="max-w-3xl">
+    <div className="w-full">
       <div className="mt-5 block rounded-lg bg-white p-5 shadow">
         <p className="mb-5 text-xl font-medium tracking-tight text-gray-900">
           Reviews ({data?.reviews?.length})

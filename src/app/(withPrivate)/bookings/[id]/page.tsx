@@ -6,7 +6,6 @@ import withAuth from "@/components/auth/WithAuth";
 import BookingForm from "@/components/booking/BookingForm";
 import ProductDeacription from "@/components/shared/ProductDeacription";
 import ProductDetailsImage from "@/components/shared/ProductDetailsImage";
-import ReviewList from "@/components/shared/ReviewList";
 import Star from "@/components/shared/Star";
 import { useGetServiceQuery } from "@/redux/features/service/serviceApi";
 import { generateTotalPersonOptions } from "@/utils/optionGenerate";
@@ -51,28 +50,23 @@ const BookPage = ({ params }: IDefaultProps) => {
     } = data?.service;
 
     content = (
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-10 xl:gap-20">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-10">
         <div className="col-span-1 lg:col-span-8">
           <ProductDetailsImage url={image} title={name} />
-          <ProductDeacription
-            category={category}
-            name={name}
-            location={location}
-            maxSize={maxSize}
-            rating={rating}
-            price={price}
-            description={description}
-          />
-          <ReviewList />
+          <div className="mt-5">
+            <ProductDeacription
+              bookId={params.id}
+              category={category}
+              name={name}
+              location={location}
+              maxSize={maxSize}
+              rating={rating}
+              price={price}
+              description={description}
+            />
+          </div>
         </div>
         <div className="col-span-1 lg:col-span-4">
-          <div className="p-5 rounded-xl w-full shadow relative">
-            <p className="text-lg font-medium tracking-tight">
-              BDT {price}
-              <span className="text-xs font-normal">/person</span>
-            </p>
-            {rating && <Star rating={rating} />}
-          </div>
           <BookingForm
             serviceId={params.id}
             totalPersonOptions={generateTotalPersonOptions(maxSize)}

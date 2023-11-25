@@ -23,7 +23,15 @@ const ServiceCard = ({ service }: IProps) => {
   const router = useRouter();
   const { accessToken } = useAppSelector((state) => state.auth);
   const [addToCart, { isError, isSuccess, error }] = useAddToCartMutation();
-  const { id: serviceId, name, price, location, rating, image } = service;
+  const {
+    id: serviceId,
+    name,
+    price,
+    location,
+    rating = 0,
+    image,
+    isUpcoming,
+  } = service;
   const isUserLoggedIn = accessToken && authLoggedIn(accessToken);
 
   useEffect(() => {
@@ -70,12 +78,10 @@ const ServiceCard = ({ service }: IProps) => {
                 {location}
               </span>
             </div>
-            {rating && (
-              <div className="mr-2 rounded text-red-500 px-2.5 py-0.5 text-xs font-semibold flex gap-x-0.5 items-center">
-                {rating.toFixed(1)}
-                <StarIcon className="w-3 h-3" />
-              </div>
-            )}
+            <div className="mr-2 rounded text-red-500 px-2.5 py-0.5 text-xs font-semibold flex gap-x-0.5 items-center">
+              {rating.toFixed(1)}
+              <StarIcon className="w-3 h-3" />
+            </div>
           </div>
           <div className="flex items-center justify-between">
             <p className="text-xl font-bold text-slate-900">
@@ -83,13 +89,15 @@ const ServiceCard = ({ service }: IProps) => {
               <span className="text-gray-700 text-xs font-normal">/person</span>
             </p>
 
-            <button
-              type="button"
-              className="flex items-center rounded-md bg-slate-900 p-1.5 text-center text-sm font-medium text-white hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-700"
-              onClick={addToCartHandler}
-            >
-              <ShoppingBagIcon className="w-5 h-5" />
-            </button>
+            {!isUpcoming && (
+              <button
+                type="button"
+                className="flex items-center rounded-md bg-slate-900 p-1 text-center text-sm font-medium text-white hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-700"
+                onClick={addToCartHandler}
+              >
+                <ShoppingBagIcon className="w-5 h-5" />
+              </button>
+            )}
           </div>
         </div>
       </div>

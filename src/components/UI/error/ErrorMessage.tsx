@@ -14,7 +14,7 @@ const ErrorMessage = ({ errorMessage, errorMessages }: IProps) => {
   return (
     <>
       <p className="text-red-500 text-xs mt-0.5 lg:text-sm">{errorMessage}</p>
-      {errorMessages?.length && (
+      {errorMessages?.length && errorMessage === "Validation Error" && (
         <ul>
           {errorMessages.map((err) => (
             <li key={err.message}>

@@ -7,6 +7,8 @@ import ProductDeacription from "@/components/shared/ProductDeacription";
 import { useGetServiceQuery } from "@/redux/features/service/serviceApi";
 import Star from "@/components/shared/Star";
 import ReviewList from "@/components/shared/ReviewList";
+import { MapPinIcon, UsersIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 type IDefaultProps = {
   params: any;
@@ -45,13 +47,17 @@ const ServicePage = ({ params }: IDefaultProps) => {
       rating,
       price,
       description,
+      isUpcoming,
     } = data?.service;
 
     content = (
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-10 xl:gap-20">
-        <div className="col-span-1 lg:col-span-8">
+      <div className="grid grid-cols-1 gap-y-5 lg:grid-cols-12 lg:gap-y-0 lg:gap-x-10">
+        <div className="col-span-1 lg:col-span-6">
           <ProductDetailsImage url={image} title={name} />
+        </div>
+        <div className="col-span-1 lg:col-span-6">
           <ProductDeacription
+            bookId={params.id}
             category={category}
             name={name}
             location={location}
@@ -59,17 +65,11 @@ const ServicePage = ({ params }: IDefaultProps) => {
             rating={rating}
             price={price}
             description={description}
+            bookBtnShow={!isUpcoming}
           />
-          <ReviewList productId={params.id} />
         </div>
-        <div className="col-span-1 lg:col-span-4">
-          <div className="p-5 rounded-xl w-full shadow relative">
-            <p className="text-lg font-medium tracking-tight">
-              BDT {price}
-              <span className="text-xs font-normal">/person</span>
-            </p>
-            {rating && <Star rating={rating} />}
-          </div>
+        <div className="col-span-1 lg:col-span-6">
+          <ReviewList productId={params.id} />
         </div>
       </div>
     );

@@ -5,8 +5,8 @@ import SpinarLoader from "@/components/UI/loading/SpinarLoader";
 import ServiceForm from "@/components/service/ServiceForm";
 import ActionBar from "@/components/shared/ActionBar";
 import {
-  useCreateServiceMutation,
   useGetServiceQuery,
+  useUpdateServiceMutation,
 } from "@/redux/features/service/serviceApi";
 import { serviceSchema } from "@/schemas/service";
 import { useRouter } from "next/navigation";
@@ -25,8 +25,8 @@ const UpdateServicePage = ({ params }: IDefaulProps) => {
     data,
   } = useGetServiceQuery(params.id);
 
-  const [createService, { isLoading, isError, error, isSuccess }] =
-    useCreateServiceMutation();
+  const [updateService, { isLoading, isError, error, isSuccess }] =
+    useUpdateServiceMutation();
 
   useEffect(() => {
     if (isSuccess) {
@@ -35,7 +35,7 @@ const UpdateServicePage = ({ params }: IDefaulProps) => {
   }, [isSuccess, router]);
 
   const onSubmit = (data: any) => {
-    createService(data);
+    updateService({ id: params.id, data });
   };
 
   let content;

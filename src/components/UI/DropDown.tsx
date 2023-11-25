@@ -37,10 +37,10 @@ const DropDown = () => {
             <Image
               className="rounded-full object-contain"
               width={32}
-              height={28}
+              height={32}
               src={user?.profileImage}
               alt={userName}
-              objectFit="cover"
+              objectFit="contain"
               priority
             />
           )}

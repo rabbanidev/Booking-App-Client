@@ -12,7 +12,7 @@ const UpcomingService = () => {
   let query: Record<string, any> = {};
   query["isUpcoming"] = true;
 
-  const { isLoading, isError, error, data } = useGetServicesQuery(undefined);
+  const { isLoading, isError, error, data } = useGetServicesQuery(query);
 
   //Decide what to render
   let content = null;

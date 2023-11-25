@@ -43,7 +43,7 @@ const News = () => {
   }
 
   return (
-    <section className="py-10">
+    <section className="pt-10">
       <div className="container">
         <SectionTitle label="Latest" value="News" />
         {content}

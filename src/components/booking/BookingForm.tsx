@@ -43,7 +43,7 @@ const BookingForm = ({ serviceId, totalPersonOptions }: IProps) => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Booking successfull!");
-      router.push(`/reviews/${serviceId}`);
+      // router.push(`/reviews/${serviceId}`);
     }
   }, [isSuccess, router, serviceId]);
 
@@ -75,7 +75,7 @@ const BookingForm = ({ serviceId, totalPersonOptions }: IProps) => {
   };
 
   return (
-    <div className="mt-5 p-5 rounded-xl w-full shadow">
+    <div className="p-5 rounded-xl w-full shadow">
       <Form
         submitHandler={submitHandler}
         defaultValues={defaultValues}
